@@ -7,5 +7,5 @@ add_executable(ccalc
     src/localmath.c)
 
 target_include_directories(ccalc PUBLIC
-    /Users/andrew/src/test/safer_dynamic/dynomath/include)
-target_link_libraries(ccalc /Users/andrew/src/test/safer_dynamic/target/release/libdynomath.dylib)
+    ${CMAKE_SOURCE_DIR}/vendor/dynomath/include)
+target_link_libraries(ccalc ${CMAKE_SOURCE_DIR}/vendor/dynomath/lib/libdynomath${CMAKE_SHARED_LIBRARY_SUFFIX})
