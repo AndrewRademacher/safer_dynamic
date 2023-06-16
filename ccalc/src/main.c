@@ -7,14 +7,15 @@ int main(int argc, char **argv)
 {
     DynoClient_t *c = DYNO_new_client();
     Response_t resp = DYNO_request(c, "https://httpbin.org/json");
-    if (resp.error == DYNO_ERROR_OK)
+    if (resp.error != DYNO_ERROR_OK)
     {
-        printf("Status: %d", resp.status_code);
-        printf("\n%s\n", resp.text);
+        printf("Error: %d\n", resp.error);
+        return resp.error;
     }
     else
     {
-        printf("Error: %d\n", resp.error);
+        printf("Status: %d", resp.status_code);
+        printf("\n%s\n", resp.text);
     }
 
     DYNO_free_response(resp);
