@@ -17,7 +17,7 @@ pub struct DynoClient {
 
 #[derive_ReprC]
 #[repr(C)]
-pub struct Response {
+pub struct DynoResponse {
     pub error: DynoError,
     pub status_code: c_short,
     pub text: char_p::Box,
@@ -38,14 +38,14 @@ pub fn DYNO_free_client(client: repr_c::Box<DynoClient>) {
 }
 
 #[ffi_export]
-pub fn DYNO_request(client: &mut DynoClient, url: char_p::Ref<'_>) -> Response {
+pub fn DYNO_request(client: &mut DynoClient, url: char_p::Ref<'_>) -> DynoResponse {
     match request(client, url.to_str()) {
-        Ok((status_code, text)) => Response {
+        Ok((status_code, text)) => DynoResponse {
             error: DynoError::Ok,
             status_code: status_code as c_short,
             text: text.try_into().unwrap(),
         },
-        Err(e) => Response {
+        Err(e) => DynoResponse {
             error: e,
             status_code: 0,
             text: "".to_string().try_into().unwrap(),
@@ -78,7 +78,7 @@ fn request(client: &mut DynoClient, url: &str) -> Result<(u16, String), DynoErro
 }
 
 #[ffi_export]
-pub fn DYNO_free_response(response: Response) {
+pub fn DYNO_free_response(response: DynoResponse) {
     drop(response)
 }
 

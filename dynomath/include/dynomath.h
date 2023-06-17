@@ -54,7 +54,7 @@ enum DynoError {
 DynoError_t;
 
 /** <No documentation available> */
-typedef struct Response {
+typedef struct DynoResponse {
     /** <No documentation available> */
     DynoError_t error;
 
@@ -63,19 +63,19 @@ typedef struct Response {
 
     /** <No documentation available> */
     char * text;
-} Response_t;
+} DynoResponse_t;
 
 /** <No documentation available> */
 void
 DYNO_free_response (
-    Response_t response);
+    DynoResponse_t response);
 
 /** <No documentation available> */
 DynoClient_t *
 DYNO_new_client (void);
 
 /** <No documentation available> */
-Response_t
+DynoResponse_t
 DYNO_request (
     DynoClient_t * client,
     char const * url);

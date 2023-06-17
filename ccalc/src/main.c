@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
     DynoClient_t *c = DYNO_new_client();
-    Response_t resp = DYNO_request(c, "https://httpbin.org/json");
+    DynoResponse_t resp = DYNO_request(c, "https://httpbin.org/json");
     if (resp.error != DYNO_ERROR_OK)
     {
         printf("Error: %d\n", resp.error);
