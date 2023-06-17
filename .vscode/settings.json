@@ -1,8 +1,11 @@
 {
     "cSpell.words": [
+        "bindgen",
         "cbindgen",
         "DYNO",
+        "rcalc",
         "repr",
-        "reqwest"
+        "reqwest",
+        "rustc"
     ]
 }
